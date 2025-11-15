@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: lojagamer-sql-server
+    environment:
+      # Esta é a senha que o SQL Server vai usar.
+      # Deve ser EXATAMENTE a mesma que você colocou no appsettings.json
+      SA_PASSWORD: "@Flz0420"
+      # Confirma que você aceita a licença de uso
+      ACCEPT_EULA: "Y"
+    ports:
+      # Expõe a porta 1433 do container para a porta 1433 da sua máquina.
+      # É por aqui que nossa API vai se conectar.
+      - "1433:1433"
+    volumes:
+      - lojagamer-db-data:/var/opt/mssql
+
+volumes:
+  lojagamer-db-data:
+    name: lojagamer-db-data

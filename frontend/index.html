@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Gamer - Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-container" class="container">
+        <form id="login-form">
+            <h2>🎮 Painel de Login</h2>
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-senha">Senha</label>
+                <input type="password" id="login-senha" required>
+            </div>
+            <button type="submit">Entrar</button>
+            <p id="login-error" class="error-message"></p>
+        </form>
+    </div>
+
+    <div id="dashboard-container" class="container" style="display: none;">
+        
+        <header>
+            <h2>Painel de Produtos</h2>
+            <button id="logout-button">Sair</button>
+        </header>
+
+        <form id="produto-form">
+            <h3>Adicionar / Editar Produto</h3>
+            <input type="hidden" id="produto-id">
+            
+            <div class="form-group">
+                <label for="produto-nome">Nome</label>
+                <input type="text" id="produto-nome" required>
+            </div>
+            <div class="form-group">
+                <label for="produto-descricao">Descrição</label>
+                <input type="text" id="produto-descricao">
+            </div>
+            <div class="form-group">
+                <label for="produto-preco">Preço (R$)</label>
+                <input type="number" id="produto-preco" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="produto-estoque">Estoque</label>
+                <input type="number" id="produto-estoque" step="1" required>
+            </div>
+            <button type="submit">Salvar Produto</button>
+            <p id="produto-error" class="error-message"></p>
+        </form>
+
+        <hr>
+
+        <h3>Lista de Produtos</h3>
+        <table id="produtos-tabela">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="produtos-tbody">
+                </tbody>
+        </table>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
