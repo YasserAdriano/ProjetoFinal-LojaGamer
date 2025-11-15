@@ -7,7 +7,7 @@ services:
     environment:
       # Esta é a senha que o SQL Server vai usar.
       # Deve ser EXATAMENTE a mesma que você colocou no appsettings.json
-      SA_PASSWORD: "@Flz0420"
+      SA_PASSWORD: "@Suasenha123"
       # Confirma que você aceita a licença de uso
       ACCEPT_EULA: "Y"
     ports:

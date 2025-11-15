@@ -62,7 +62,7 @@ Abra o arquivo `docker-compose.yml` (na raiz do projeto) e defina sua senha em `
 services:
   sqlserver:
     environment:
-      SA_PASSWORD: "@Flz0420" # <-- MUDE AQUI PARA SUA SENHA
+      SA_PASSWORD: "@Suasenha123" # <-- MUDE AQUI PARA SUA SENHA
       ACCEPT_EULA: "Y"
 ```
 **b) No `appsettings.json`:**
@@ -71,7 +71,7 @@ Abra o arquivo `LojaGamerApi/appsettings.json` e coloque a **mesma senha** em `D
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost,1433;Database=LojaGamerDb;User Id=SA;Password=@Flz0420;TrustServerCertificate=True"
+    "DefaultConnection": "Server=localhost,1433;Database=LojaGamerDb;User Id=SA;Password=@Suasenha123;TrustServerCertificate=True"
   },
 }
 ```
