@@ -1,21 +1,32 @@
 using LojaGamerApi.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer; // 1. Importa o JWT
-using Microsoft.IdentityModel.Tokens; // 2. Importa os Tokens
-using System.Text; // 3. Importa o codificador de texto
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
+
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- Início da Configuração dos Serviços ---
 
-// Pega o "endereço" do banco
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("http://localhost:8080")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                      });
+});
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Registra o "Engenheiro Chefe" (LojaGamerContext)
 builder.Services.AddDbContext<LojaGamerContext>(options =>
     options.UseSqlServer(connectionString));
 
-// ---- INÍCIO DA CONFIGURAÇÃO DO JWT (NOVO) ----
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -25,31 +36,48 @@ builder.Services.AddAuthentication(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        // Diz para validar quem "emitiu" o token
         ValidateIssuer = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
-
-        // Diz para validar para quem o token se "destina"
         ValidateAudience = true,
         ValidAudience = builder.Configuration["Jwt:Audience"],
-
-        // Diz para validar o "tempo de vida" do token (se ele expirou)
         ValidateLifetime = true,
-
-        // Diz para validar a "chave secreta" (a assinatura)
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
 
 builder.Services.AddAuthorization();
-// ---- FIM DA CONFIGURAÇÃO DO JWT (NOVO) ----
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
-// --- Fim da Configuração dos Serviços ---
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "LojaGamerApi", Version = "v1" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme() 
+    { 
+        Name = "Authorization", 
+        Type = SecuritySchemeType.ApiKey, 
+        Scheme = "Bearer", 
+        BearerFormat = "JWT", 
+        In = ParameterLocation.Header, 
+        Description = "Insira o token JWT desta maneira: Bearer {seu token}" 
+    }); 
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+    { 
+        { 
+            new OpenApiSecurityScheme 
+            { 
+                Reference = new OpenApiReference 
+                { 
+                    Type = ReferenceType.SecurityScheme, 
+                    Id = "Bearer" 
+                } 
+            }, 
+            new string[] {} 
+        } 
+    }); 
+});
 
 var app = builder.Build();
 
@@ -59,10 +87,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors(MyAllowSpecificOrigins); 
 
-// ---- ADICIONA AUTENTICAÇÃO ANTES DA AUTORIZAÇÃO (ORDEM IMPORTANTE) ----
-app.UseAuthentication(); // <-- NOVO
+// app.UseHttpsRedirection(); 
+
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();

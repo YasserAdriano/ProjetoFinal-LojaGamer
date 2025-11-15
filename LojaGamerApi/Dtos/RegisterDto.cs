@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LojaGamerApi.Dtos
 {
-    // Esta classe define os dados que o front-end DEVE enviar para se registrar
     public class RegisterDto
     {
         [Required]

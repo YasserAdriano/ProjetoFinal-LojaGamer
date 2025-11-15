@@ -170,3 +170,4 @@ C:\Users\Usuário\Desktop\DEV\projeto-final-soft\ProjetoFinal-LojaGamer\LojaGame
 C:\Users\Usuário\Desktop\DEV\projeto-final-soft\ProjetoFinal-LojaGamer\LojaGamerApi\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Usuário\Desktop\DEV\projeto-final-soft\ProjetoFinal-LojaGamer\LojaGamerApi\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\Usuário\Desktop\DEV\projeto-final-soft\ProjetoFinal-LojaGamer\LojaGamerApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Usuário\Desktop\DEV\projeto-final-soft\ProjetoFinal-LojaGamer\LojaGamerApi\obj\Debug\net8.0\LojaGamerApi.sourcelink.json
