@@ -88,7 +88,7 @@ Aguarde até o container aparecer como "Running" no seu Docker Desktop.
 # Com o banco rodando, crie as tabelas.
 
 ```bash
-```
+
 # Entre na pasta da API
 cd LojaGamerApi
 
@@ -97,16 +97,15 @@ dotnet tool install --global dotnet-ef
 
 # Rode as migrações para criar as tabelas
 dotnet ef database update
-
+```
 ### 5. Executar o Backend (API) - Terminal 1
 
 Agora que o banco está pronto, execute a API:
 
 ```bash
-```
 # (Ainda na pasta LojaGamerApi)
 dotnet run
-
+```
 # Deixe este terminal rodando. Ele estará servindo a API em http://localhost:5176.
 
 ### 6. Executar o Front-End (Tela de Login) - Terminal 2
@@ -114,7 +113,6 @@ dotnet run
 1.  Abra um **SEGUNDO TERMINAL** no VSCode.
 2.  Navegue até a pasta `frontend`:
     ```bash
-    ```
     # (Começando da raiz ProjetoFinal-LojaGamer)
     cd frontend
     ```
@@ -143,12 +141,10 @@ Para executar os 5 testes automatizados:
 1.  Abra um **novo terminal** na pasta raiz (`ProjetoFinal-LojaGamer`).
 2. # Navegue até a pasta de testes:
     ```bash
-     ```
     # cd LojaGamerApi.Tests
     ```
 3.  # Execute o comando de teste:
     ```bash
-     ```
     dotnet test
     ```
 4.  # Você deve ver o resultado: `bem-sucedido: 5`.
