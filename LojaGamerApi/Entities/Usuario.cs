@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace LojaGamerApi.Entities
 {
-    /// <summary>
-    /// Entidade que representa um Usuário (Cliente ou Admin)
-    /// </summary>
+
     public class Usuario
     {
         [Key]
@@ -24,9 +22,9 @@ namespace LojaGamerApi.Entities
         public string SenhaHash { get; set; } 
 
         [Required]
-        public string Role { get; set; } // "Cliente" ou "Administrador"
+        public string Role { get; set; } 
 
-        // Relacionamento: Um usuário pode ter vários pedidos
+
         public ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
     }
 }

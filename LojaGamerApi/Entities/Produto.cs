@@ -3,9 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LojaGamerApi.Entities
 {
-    /// <summary>
-    /// Entidade que representa um Produto da loja.
-    /// </summary>
+
     public class Produto
     {
         [Key]
@@ -22,6 +20,6 @@ namespace LojaGamerApi.Entities
         public decimal Preco { get; set; }
 
         [Required]
-        public int Estoque { get; set; } // Usado para a RN02: "Produtos sem estoque não podem ser comprados"
+        public int Estoque { get; set; } 
     }
 }

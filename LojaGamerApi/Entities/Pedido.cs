@@ -4,16 +4,14 @@ using System.Collections.Generic;
 
 namespace LojaGamerApi.Entities
 {
-    /// <summary>
-    /// Entidade que representa um Pedido (compra finalizada).
-    /// </summary>
+
     public class Pedido
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public int UsuarioId { get; set; } // Chave estrangeira
+        public int UsuarioId { get; set; } 
         public Usuario Usuario { get; set; }
 
         [Required]
@@ -24,9 +22,9 @@ namespace LojaGamerApi.Entities
         public decimal ValorTotal { get; set; }
 
         [Required]
-        public string Status { get; set; } // Ex: "Pendente", "Pago", "Enviado", "Cancelado"
+        public string Status { get; set; } 
 
-        // Relacionamento: Um pedido é composto de vários itens
+        
         public ICollection<ItemPedido> ItensDoPedido { get; set; } = new List<ItemPedido>();
     }
 }

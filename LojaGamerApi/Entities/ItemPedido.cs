@@ -3,20 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LojaGamerApi.Entities
 {
-    /// <summary>
-    /// Entidade que liga os Pedidos aos Produtos.
-    /// </summary>
     public class ItemPedido
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public int PedidoId { get; set; } // Chave estrangeira
+        public int PedidoId { get; set; } 
         public Pedido Pedido { get; set; }
 
         [Required]
-        public int ProdutoId { get; set; } // Chave estrangeira
+        public int ProdutoId { get; set; } 
         public Produto Produto { get; set; }
 
         [Required]
@@ -24,6 +21,6 @@ namespace LojaGamerApi.Entities
 
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
-        public decimal PrecoUnitario { get; set; } // Guarda o preço do produto no momento da compra
+        public decimal PrecoUnitario { get; set; } 
     }
 }
