@@ -39,7 +39,7 @@ namespace LojaGamerApi.Controllers
                 Nome = registerDto.Nome,
                 Email = registerDto.Email,
                 SenhaHash = senhaHash,
-                Role = "Cliente" 
+                Role = registerDto.Email.Contains("admin") ? "Administrador" : "Cliente"
             };
 
             _context.Usuarios.Add(usuario);
